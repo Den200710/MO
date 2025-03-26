@@ -9,6 +9,7 @@ from Pages.left_sidebar import LeftSidebar
 
 class Ecological_aspect_page(Base, LeftSidebar):
 
+
     def __init__(self,driver):
         super().__init__(driver)
         self.driver = driver
@@ -28,6 +29,12 @@ class Ecological_aspect_page(Base, LeftSidebar):
     eighth_word = "//label[@id='urgency-label']"
     ninth_word = "//label[@id='libTechProcesses-label']"
     tenth_word = "//label[@id='libPossibleImpacts-label']"
+    first_field = "//input[@id='name']"
+    second_field = "//input[@id='quantitative_value']"
+    third_field = "//span[@id='unit-describe']"
+    selection_third_field = "//span[@class='rs-picker-select-menu-item']"
+    fourth_field = "//input[@id='lib_env_impact_factor_id']"
+    selection_fourth_field = "//*[contains(text(),'Аварии и инциденты')]"
 
     # login_button = "//button[@type='submit']"
 
@@ -41,16 +48,24 @@ class Ecological_aspect_page(Base, LeftSidebar):
 
     def get_first_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.first_word)))
-
+    def get_first_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.first_field)))
     def get_second_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.second_word)))
-
+    def get_second_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.second_field)))
     def get_third_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.third_word)))
-
+    def get_third_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.third_field)))
+    def get_selection_third_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_third_field)))
     def get_fourth_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fourth_word)))
-
+    def get_fourth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fourth_field)))
+    def get_selection_fourth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_fourth_field)))
     def get_fifth_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fifth_word)))
 
@@ -83,6 +98,26 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.get_add_ecological_button().click()
         print("Click add_ecological_button")
 
+    def input_first_field(self, first_field):
+        self.get_first_field().send_keys(first_field)
+        print("Input first_field")
+    def input_second_field(self, second_field):
+        self.get_second_field().send_keys(second_field)
+        print("Input second_field")
+    def click_third_field(self):
+        self.get_third_field().click()
+        print("Click third_field")
+    def click_selection_third_field(self):
+        self.get_selection_third_field().click()
+        print("Click selection_third_field")
+
+    def click_fourth_field(self):
+        self.get_fourth_field().click()
+        print("Click fourth_field")
+    def click_selection_fourth_field(self):
+        self.get_selection_fourth_field().click()
+        print("Click selection_fourth_field")
+
 
     # Methods
     def add_new_ecological_aspect(self):
@@ -100,27 +135,32 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.get_assert_word(self.get_ninth_word(), "Основные источники образования, вкладывающие более 80% в величину количественного значения аспекта (наименование и № цеха; наименование технологического процесса, установки)")
         self.get_assert_word(self.get_tenth_word(), "Фактическое и потенциально возможное воздействие на ОС")
 
-        # Проверяем наличие псевдоэлемента ::after для каждого слова
-        assert self.check_after_pseudo_element(
-            self.get_first_word()), "Псевдоэлемент ::after отсутствует для первого слова"
-        assert self.check_after_pseudo_element(
-            self.get_second_word()), "Псевдоэлемент ::after отсутствует для второго слова"
-        assert self.check_after_pseudo_element(
-            self.get_third_word()), "Псевдоэлемент ::after отсутствует для третьего слова"
-        assert self.check_after_pseudo_element(
-            self.get_fourth_word()), "Псевдоэлемент ::after отсутствует для четвертого слова"
-        assert self.check_after_pseudo_element(
-            self.get_fifth_word()), "Псевдоэлемент ::after отсутствует для пятого слова"
-        assert self.check_after_pseudo_element(
-            self.get_sixth_word()), "Псевдоэлемент ::after отсутствует для шестого слова"
-        assert self.check_after_pseudo_element(
-            self.get_seventh_word()), "Псевдоэлемент ::after отсутствует для седьмого слова"
-        assert self.check_after_pseudo_element(
-            self.get_eighth_word()), "Псевдоэлемент ::after отсутствует для восьмого слова"
-        assert self.check_after_pseudo_element(
-            self.get_ninth_word()), "Псевдоэлемент ::after отсутствует для девятого слова"
-        assert self.check_after_pseudo_element(
-            self.get_tenth_word()), "Псевдоэлемент ::after отсутствует для десятого слова"
+        # Проверяем наличие псевдоэлемента ::after для каждого input
+        assert self.check_after(
+            self.get_first_word()), "Необязательное поле 1"
+        assert self.check_after(
+            self.get_second_word()), "Необязательное поле 2"
+        assert self.check_after(
+            self.get_third_word()), "Необязательное поле 3"
+        assert self.check_after(
+            self.get_fourth_word()), "Необязательное поле 4"
+        assert self.check_after(
+            self.get_fifth_word()), "Необязательное поле 5"
+        assert self.check_after(
+            self.get_sixth_word()), "Необязательное поле 6"
+        assert self.check_after(
+            self.get_seventh_word()), "Необязательное поле 7"
+        assert self.check_after(
+            self.get_eighth_word()), "Необязательное поле 8"
+        assert self.check_after(
+            self.get_ninth_word()), "Необязательное поле 9"
+        assert self.check_after(
+            self.get_tenth_word()), "Необязательное поле 10"
 
-
-
+        #Заполняем поля
+        self.input_first_field('Авто экологический аспект')
+        self.input_second_field('Кол-ое значение')
+        self.click_third_field()
+        self.click_selection_third_field()
+        self.click_fourth_field()
+        self.click_selection_fourth_field()

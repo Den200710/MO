@@ -17,7 +17,7 @@ class Base():
         valua_word = word.text
         assert valua_word == result
 
-    def check_after_pseudo_element(self, element):
+    def check_after(self, element):
         # Используем JavaScript для проверки наличия псевдоэлемента ::after
         script = """
         let computedStyle = window.getComputedStyle(arguments[0], '::after');

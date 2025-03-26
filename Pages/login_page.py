@@ -56,7 +56,7 @@ class Login_page(Base):
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.get_current_url()
-        self.input_user_name('test19@test.test')
+        self.input_user_name('abval@test.test')
         self.input_password('test')
         self.click_login_button()
         self.get_assert_word(self.get_main_word(), "Сводная информация")
