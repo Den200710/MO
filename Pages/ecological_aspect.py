@@ -1,8 +1,8 @@
-from selenium.webdriver.support import expected_conditions as EC
+import time
 
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-
 from Base.base_class import Base
 from Pages.left_sidebar import LeftSidebar
 
@@ -14,11 +14,11 @@ class Ecological_aspect_page(Base, LeftSidebar):
         super().__init__(driver)
         self.driver = driver
 
-
     # Locators
-
+    """Локаторы кнопок"""
     ecological_button = "//*[contains(text(),'Экологические аспекты')]"
     add_ecological_button = "//span[@class='ui-smart-list-header-action_text__BArQV']"
+    """Локаторы наименований"""
     first_word = "//label[@id='name-label']"
     second_word = "//label[@id='quantitative_value-label']"
     third_word = "//label[@id='unit-label']"
@@ -29,12 +29,24 @@ class Ecological_aspect_page(Base, LeftSidebar):
     eighth_word = "//label[@id='urgency-label']"
     ninth_word = "//label[@id='libTechProcesses-label']"
     tenth_word = "//label[@id='libPossibleImpacts-label']"
+    """Локаторы полей"""
     first_field = "//input[@id='name']"
     second_field = "//input[@id='quantitative_value']"
     third_field = "//span[@id='unit-describe']"
     selection_third_field = "//span[@class='rs-picker-select-menu-item']"
     fourth_field = "//input[@id='lib_env_impact_factor_id']"
     selection_fourth_field = "//*[contains(text(),'Аварии и инциденты')]"
+    fifth_field = "//input[@id='scale']"
+    sixth_field = "//input[@id='adjustability']"
+    seventh_field = "//input[@id='cost']"
+    eighth_field = "//input[@id='urgency']"
+    ninth_field = "//*[@id='__next']/div[1]/div[3]/div/div[3]/form/div[1]/div[2]/div[1]/div/div/div[1]/div/div"
+    selection_ninth_field = "/html/body/div[4]/div/div/div/div[2]/div/div[3]/div[2]/table/tbody/tr/td[1]"
+    close_right_window = "/html/body/div[4]"
+    tenth_field = "//*[@id='__next']/div[1]/div[3]/div/div[3]/form/div[1]/div[2]/div[2]/div/div/div[1]/div/div"
+    selection_tenth_field = "//td[@class='ui-table_cell__cnEqM ui-table_hide_mobile__4lT7x']"
+
+    save_button = "//button[@type='submit']"
 
     # login_button = "//button[@type='submit']"
 
@@ -43,29 +55,19 @@ class Ecological_aspect_page(Base, LeftSidebar):
     def get_ecological_button(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.ecological_button)))
 
+    def get_save_button(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.save_button)))
     def get_add_ecological_button(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.add_ecological_button)))
-
+    """Геттеры наименований"""
     def get_first_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.first_word)))
-    def get_first_field(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.first_field)))
     def get_second_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.second_word)))
-    def get_second_field(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.second_field)))
     def get_third_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.third_word)))
-    def get_third_field(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.third_field)))
-    def get_selection_third_field(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_third_field)))
     def get_fourth_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fourth_word)))
-    def get_fourth_field(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fourth_field)))
-    def get_selection_fourth_field(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_fourth_field)))
     def get_fifth_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fifth_word)))
 
@@ -84,8 +86,37 @@ class Ecological_aspect_page(Base, LeftSidebar):
     def get_tenth_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.tenth_word)))
 
-    #def get_login_button(self):
-    #    return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.login_button)))
+    """Геттеры полей"""
+    def get_first_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.first_field)))
+    def get_second_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.second_field)))
+    def get_third_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.third_field)))
+    def get_selection_third_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_third_field)))
+    def get_fourth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fourth_field)))
+    def get_selection_fourth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_fourth_field)))
+    def get_fifth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.fifth_field)))
+    def get_sixth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.sixth_field)))
+    def get_seventh_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.seventh_field)))
+    def get_eighth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.eighth_field)))
+    def get_ninth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.ninth_field)))
+    def get_selection_ninth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_ninth_field)))
+    def get_close_right_window(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.close_right_window)))
+    def get_tenth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.tenth_field)))
+    def get_selection_tenth_field(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_tenth_field)))
 
 
     # Actions
@@ -97,6 +128,9 @@ class Ecological_aspect_page(Base, LeftSidebar):
     def click_add_ecological_button(self):
         self.get_add_ecological_button().click()
         print("Click add_ecological_button")
+    def click_save_button(self):
+        self.get_save_button().click()
+        print("Click save_button")
 
     def input_first_field(self, first_field):
         self.get_first_field().send_keys(first_field)
@@ -117,7 +151,35 @@ class Ecological_aspect_page(Base, LeftSidebar):
     def click_selection_fourth_field(self):
         self.get_selection_fourth_field().click()
         print("Click selection_fourth_field")
+    def input_fifth_field(self, fifth_field):
+        self.get_fifth_field().send_keys(fifth_field)
+        print("Input fifth_field")
+    def input_sixth_field(self, sixth_field):
+        self.get_sixth_field().send_keys(sixth_field)
+        print("Input sixth_field")
+    def input_seventh_field(self, seventh_field):
+        self.get_seventh_field().send_keys(seventh_field)
+        print("Input seventh_field")
+    def input_eighth_field(self, eighth_field):
+        self.get_eighth_field().send_keys(eighth_field)
+        print("Input eighth_field")
+    def click_ninth_field(self):
+        self.get_ninth_field().click()
+        print("Click ninth_field")
+    def click_selection_ninth_field(self):
+        self.get_selection_ninth_field().click()
+        print("Click selection_ninth_field")
 
+    def click_close_right_window(self):
+        self.get_close_right_window().click()
+        print("Click close_right_window")
+
+    def click_tenth_field(self):
+        self.get_tenth_field().click()
+        print("Click tenth_field")
+    def click_selection_tenth_field(self):
+        self.get_selection_tenth_field().click()
+        print("Click selection_tenth_field")
 
     # Methods
     def add_new_ecological_aspect(self):
@@ -164,3 +226,22 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.click_selection_third_field()
         self.click_fourth_field()
         self.click_selection_fourth_field()
+        self.click_ninth_field()
+        self.click_selection_ninth_field()
+        self.click_close_right_window()
+        self.click_tenth_field()
+        time.sleep(1)
+        self.click_selection_tenth_field()
+        time.sleep(1)
+        self.click_close_right_window()
+        self.driver.execute_script("window.scrollBy(0, 800)")
+        time.sleep(1)
+        self.input_fifth_field('30')
+        time.sleep(1)
+        self.input_sixth_field('40')
+        time.sleep(1)
+        self.input_seventh_field('50')
+        time.sleep(1)
+        self.input_eighth_field('60')
+        time.sleep(1)
+        self.click_save_button()
