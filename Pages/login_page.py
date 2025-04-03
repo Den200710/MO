@@ -8,7 +8,7 @@ from Base.base_class import Base
 
 class Login_page(Base):
 
-    url = 'http://denis.lan/sign-in'
+    url = 'http://rc3.lan/'
 
 
     def __init__(self,driver):
@@ -56,8 +56,8 @@ class Login_page(Base):
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.get_current_url()
-        self.input_user_name('abval@test.test')
-        self.input_password('test')
+        self.input_user_name('sample@sample.com')
+        self.input_password('123654')
         self.click_login_button()
         self.get_assert_word(self.get_main_word(), "Сводная информация")
         

@@ -26,6 +26,21 @@ class Base():
         has_after = self.driver.execute_script(script, element)
         return has_after
 
+    """Method get word"""
+
+    def get_field_value(self, locator, variable_name):
+        """Получает значение поля по указанному локатору и сохраняет его в переменную."""
+        try:
+            field_element = self.driver.find_element(*locator)
+            # Здесь предполагаем, что вы имеете в виду значение поля ввода
+            value = field_element.get_attribute('value')  # Получаем значение поля ввода
+            if value is None:  # Если значение пустое, возможно что-то другое.
+                value = field_element.text  # Пытаемся получить текст элемента
+            setattr(self, variable_name, value)  # Сохраняем полученное значение в переменную
+            print(f"Сохраненное значение для {variable_name}: {value}")  # Выводим значение
+        except Exception as e:
+            print(f"Произошла ошибка: {e}")  # Обработка ошибок
+
 
 
 

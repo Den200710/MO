@@ -14,6 +14,13 @@ class Ecological_aspect_page(Base, LeftSidebar):
         super().__init__(driver)
         self.driver = driver
 
+    # Variable
+    var1_field = 'Авто экологический аспект'
+    var2_field = 'Кол-ое значение'
+    var5_field = '30'
+    var6_field = '40'
+    var7_field = '50'
+    var8_field = '60'
     # Locators
     """Локаторы кнопок"""
     ecological_button = "//*[contains(text(),'Экологические аспекты')]"
@@ -32,7 +39,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
     """Локаторы полей"""
     first_field = "//input[@id='name']"
     second_field = "//input[@id='quantitative_value']"
-    third_field = "//span[@id='unit-describe']"
+    third_field = "//div[@id='unit']"
     selection_third_field = "//span[@class='rs-picker-select-menu-item']"
     fourth_field = "//input[@id='lib_env_impact_factor_id']"
     selection_fourth_field = "//*[contains(text(),'Аварии и инциденты')]"
@@ -43,7 +50,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
     ninth_field = "//*[@id='__next']/div[1]/div[3]/div/div[3]/form/div[1]/div[2]/div[1]/div/div/div[1]/div/div"
     selection_ninth_field = "/html/body/div[4]/div/div/div/div[2]/div/div[3]/div[2]/table/tbody/tr/td[1]"
     close_right_window = "/html/body/div[4]"
-    tenth_field = "//*[@id='__next']/div[1]/div[3]/div/div[3]/form/div[1]/div[2]/div[2]/div/div/div[1]/div/div"
+    tenth_field = "/html/body/div[1]/div[1]/div[3]/div/div[3]/form/div[1]/div[2]/div[2]/div/div/div[1]/div/div"
     selection_tenth_field = "//td[@class='ui-table_cell__cnEqM ui-table_hide_mobile__4lT7x']"
 
     save_button = "//button[@type='submit']"
@@ -198,30 +205,20 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.get_assert_word(self.get_tenth_word(), "Фактическое и потенциально возможное воздействие на ОС")
 
         # Проверяем наличие псевдоэлемента ::after для каждого input
-        assert self.check_after(
-            self.get_first_word()), "Необязательное поле 1"
-        assert self.check_after(
-            self.get_second_word()), "Необязательное поле 2"
-        assert self.check_after(
-            self.get_third_word()), "Необязательное поле 3"
-        assert self.check_after(
-            self.get_fourth_word()), "Необязательное поле 4"
-        assert self.check_after(
-            self.get_fifth_word()), "Необязательное поле 5"
-        assert self.check_after(
-            self.get_sixth_word()), "Необязательное поле 6"
-        assert self.check_after(
-            self.get_seventh_word()), "Необязательное поле 7"
-        assert self.check_after(
-            self.get_eighth_word()), "Необязательное поле 8"
-        assert self.check_after(
-            self.get_ninth_word()), "Необязательное поле 9"
-        assert self.check_after(
-            self.get_tenth_word()), "Необязательное поле 10"
+        assert self.check_after(self.get_first_word())
+        assert self.check_after(self.get_second_word())
+        assert self.check_after(self.get_third_word())
+        assert self.check_after(self.get_fourth_word())
+        assert self.check_after(self.get_fifth_word())
+        assert self.check_after(self.get_sixth_word())
+        assert self.check_after(self.get_seventh_word())
+        assert self.check_after(self.get_eighth_word())
+        assert self.check_after(self.get_ninth_word())
+        assert self.check_after(self.get_tenth_word())
 
         #Заполняем поля
-        self.input_first_field('Авто экологический аспект')
-        self.input_second_field('Кол-ое значение')
+        self.input_first_field(self.var1_field)
+        self.input_second_field(self.var2_field)
         self.click_third_field()
         self.click_selection_third_field()
         self.click_fourth_field()
@@ -234,14 +231,29 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.click_selection_tenth_field()
         time.sleep(1)
         self.click_close_right_window()
+
+        self.get_field_value((By.XPATH, self.third_field), 'var3_field')
+        self.get_field_value((By.XPATH, self.ninth_field), 'var9_field')
+        self.get_field_value((By.XPATH, self.tenth_field), 'var10_field')
+
         self.driver.execute_script("window.scrollBy(0, 800)")
         time.sleep(1)
-        self.input_fifth_field('30')
+        self.input_fifth_field(self.var5_field)
         time.sleep(1)
-        self.input_sixth_field('40')
+        self.input_sixth_field(self.var6_field)
         time.sleep(1)
-        self.input_seventh_field('50')
+        self.input_seventh_field(self.var7_field)
         time.sleep(1)
-        self.input_eighth_field('60')
-        time.sleep(1)
-        self.click_save_button()
+        self.input_eighth_field(self.var8_field)
+
+
+        """Сохраняем значения полей, вызывая один метод с различными локаторами"""
+
+       # self.get_field_value((By.XPATH, self.third_field), 'var3_field')
+        self.get_field_value((By.XPATH, self.fourth_field), 'var4_field')
+       # self.get_field_value((By.XPATH, self.ninth_field), 'var9_field')
+       # self.get_field_value((By.XPATH, self.tenth_field), 'var10_field')
+
+       # self.click_save_button()
+
+
