@@ -21,6 +21,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
     var6_field = '40'
     var7_field = '50'
     var8_field = '60'
+
     # Locators
     """Локаторы кнопок"""
     ecological_button = "//*[contains(text(),'Экологические аспекты')]"
@@ -54,6 +55,24 @@ class Ecological_aspect_page(Base, LeftSidebar):
     selection_tenth_field = "//td[@class='ui-table_cell__cnEqM ui-table_hide_mobile__4lT7x']"
 
     save_button = "//button[@type='submit']"
+
+    """Локаторы страницч Описание"""
+    field_first = "//*[@id='__next']/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[1]"
+    field_second = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]"
+    field_third = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[2]/div[2]"
+    field_fourth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[3]/div[2]"
+    field_fifth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[4]/div[2]"
+    field_sixth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[5]/div[2]"
+    field_seventh = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[6]/div[2]"
+    field_eighth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[7]/div[2]"
+    field_ninth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/table/tbody/tr/td[2]/div"
+    field_tenth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div"
+    open_block = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[2]/div/div[2]"
+    open_block_fact = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[3]/div[1]/div[2]"
+
+
+
+
 
     # login_button = "//button[@type='submit']"
 
@@ -125,6 +144,32 @@ class Ecological_aspect_page(Base, LeftSidebar):
     def get_selection_tenth_field(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.selection_tenth_field)))
 
+    """Геттеры полей Описание"""
+    def get_field_first(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_first)))
+    def get_field_second(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_second)))
+    def get_field_third(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_third)))
+    def get_field_fourth(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_fourth)))
+    def get_field_fifth(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_fifth)))
+    def get_field_sixth(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_sixth)))
+    def get_field_seventh(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_seventh)))
+    def get_field_eighth(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_eighth)))
+    def get_field_ninth(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_ninth)))
+    def get_field_tenth(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_tenth)))
+    def get_open_block(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.open_block)))
+    def get_open_block_fact(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.open_block_fact)))
+
 
     # Actions
 
@@ -187,6 +232,12 @@ class Ecological_aspect_page(Base, LeftSidebar):
     def click_selection_tenth_field(self):
         self.get_selection_tenth_field().click()
         print("Click selection_tenth_field")
+    def click_open_block(self):
+        self.get_open_block().click()
+        print("Click open_block")
+    def click_open_block_fact(self):
+        self.get_open_block_fact().click()
+        print("Click open_block_fact")
 
     # Methods
     def add_new_ecological_aspect(self):
@@ -254,6 +305,23 @@ class Ecological_aspect_page(Base, LeftSidebar):
        # self.get_field_value((By.XPATH, self.ninth_field), 'var9_field')
        # self.get_field_value((By.XPATH, self.tenth_field), 'var10_field')
 
-       # self.click_save_button()
+        self.click_save_button()
+        time.sleep(2)
+        self.get_assert_word(self.get_field_first(), self.var1_field)
+        self.get_assert_word(self.get_field_second(), self.var2_field)
+        self.get_assert_word(self.get_field_third(), self.var3_field)
+        self.get_assert_word(self.get_field_fourth(), self.var4_field)
+        self.get_assert_word(self.get_field_fifth(), self.var5_field)
+        self.get_assert_word(self.get_field_sixth(), self.var6_field)
+        self.get_assert_word(self.get_field_seventh(), self.var7_field)
+        self.get_assert_word(self.get_field_eighth(), self.var8_field)
+        self.click_open_block()
+        self.get_assert_word(self.get_field_ninth(), self.var9_field)
+        #self.driver.execute_script("window.scrollBy(0, 800)")
+        self.click_open_block_fact()
+        self.get_assert_word(self.get_field_tenth(), self.var10_field)
+
+
+
 
 

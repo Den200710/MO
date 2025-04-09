@@ -16,6 +16,7 @@ class Base():
     def get_assert_word(self, word, result):
         valua_word = word.text
         assert valua_word == result
+        print('Good assert')
 
     def check_after(self, element):
         # Используем JavaScript для проверки наличия псевдоэлемента ::after
