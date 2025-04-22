@@ -21,6 +21,9 @@ class Ecological_aspect_page(Base, LeftSidebar):
     var6_field = '40'
     var7_field = '50'
     var8_field = '60'
+    var11_field = (int(var5_field) + int(var6_field) + int(var7_field) + int(var8_field)) // 4
+    var11_str = f"{str(var11_field)} Б"
+
 
     # Locators
     """Локаторы кнопок"""
@@ -56,7 +59,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
 
     save_button = "//button[@type='submit']"
 
-    """Локаторы страницч Описание"""
+    """Локаторы страницы Описание"""
     field_first = "//*[@id='__next']/div[1]/div[3]/div/div[1]/div[2]/div[2]/div[1]"
     field_second = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[1]/div[2]"
     field_third = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[2]/div[2]"
@@ -67,14 +70,11 @@ class Ecological_aspect_page(Base, LeftSidebar):
     field_eighth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[7]/div[2]"
     field_ninth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/table/tbody/tr/td[2]/div"
     field_tenth = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div"
+    field_eleven = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[1]/div[2]/div/div[8]/div[2]"
     open_block = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[2]/div/div[2]"
     open_block_fact = "//*[@id='__next']/div[1]/div[3]/div/div[3]/div/div[2]/div[3]/div[1]/div[2]"
 
 
-
-
-
-    # login_button = "//button[@type='submit']"
 
     # Getters
 
@@ -165,6 +165,8 @@ class Ecological_aspect_page(Base, LeftSidebar):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_ninth)))
     def get_field_tenth(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_tenth)))
+    def get_field_eleven(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.field_eleven)))
     def get_open_block(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.open_block)))
     def get_open_block_fact(self):
@@ -252,7 +254,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.get_assert_word(self.get_sixth_word(), "Регулируемость")
         self.get_assert_word(self.get_seventh_word(), "Затратность")
         self.get_assert_word(self.get_eighth_word(), "Срочность")
-        self.get_assert_word(self.get_ninth_word(), "Основные источники образования, вкладывающие более 80% в величину количественного значения аспекта (наименование и № цеха; наименование технологического процесса, установки)")
+        self.get_assert_word(self.get_ninth_word(), "Основные источники образования, вкладывающие более 30% в величину количественного значения аспекта (наименование и № цеха; наименование технологического процесса, установки)")
         self.get_assert_word(self.get_tenth_word(), "Фактическое и потенциально возможное воздействие на ОС")
 
         # Проверяем наличие псевдоэлемента ::after для каждого input
@@ -287,6 +289,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.get_field_value((By.XPATH, self.ninth_field), 'var9_field')
         self.get_field_value((By.XPATH, self.tenth_field), 'var10_field')
 
+
         self.driver.execute_script("window.scrollBy(0, 800)")
         time.sleep(1)
         self.input_fifth_field(self.var5_field)
@@ -300,11 +303,7 @@ class Ecological_aspect_page(Base, LeftSidebar):
 
         """Сохраняем значения полей, вызывая один метод с различными локаторами"""
 
-       # self.get_field_value((By.XPATH, self.third_field), 'var3_field')
         self.get_field_value((By.XPATH, self.fourth_field), 'var4_field')
-       # self.get_field_value((By.XPATH, self.ninth_field), 'var9_field')
-       # self.get_field_value((By.XPATH, self.tenth_field), 'var10_field')
-
         self.click_save_button()
         time.sleep(2)
         self.get_assert_word(self.get_field_first(), self.var1_field)
@@ -317,9 +316,9 @@ class Ecological_aspect_page(Base, LeftSidebar):
         self.get_assert_word(self.get_field_eighth(), self.var8_field)
         self.click_open_block()
         self.get_assert_word(self.get_field_ninth(), self.var9_field)
-        #self.driver.execute_script("window.scrollBy(0, 800)")
         self.click_open_block_fact()
         self.get_assert_word(self.get_field_tenth(), self.var10_field)
+        self.get_assert_word(self.get_field_eleven(), self.var11_str)
 
 
 

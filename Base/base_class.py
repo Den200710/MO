@@ -15,6 +15,7 @@ class Base():
 
     def get_assert_word(self, word, result):
         valua_word = word.text
+        print(f"Значение valua_word: '{valua_word}', Ожидаемое значение result: '{result}'")
         assert valua_word == result
         print('Good assert')
 

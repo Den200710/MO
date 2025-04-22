@@ -21,6 +21,7 @@ class Login_page(Base):
     password = "//input[@id='password']"
     login_button = "//button[@type='submit']"
     main_word = "//div[@class='view-header_titles__3eiIN view-header_left_padding__mNHAb']"
+    choice_company = "//*[@id='__next']/div[1]/div/div/div/div[3]/div/div/div[1]/div[1]"
 
     # Getters
 
@@ -35,6 +36,8 @@ class Login_page(Base):
 
     def get_main_word(self):
         return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.main_word)))
+    def get_choice_company(self):
+        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.choice_company)))
 
     # Actions
 
@@ -49,6 +52,9 @@ class Login_page(Base):
     def click_login_button(self):
         self.get_login_button().click()
         print("Click login_button")
+    def click_choice_company(self):
+        self.get_choice_company().click()
+        print("Click choice_company")
 
 
     # Methods
@@ -59,6 +65,7 @@ class Login_page(Base):
         self.input_user_name('sample@sample.com')
         self.input_password('123654')
         self.click_login_button()
+        self.click_choice_company()
         self.get_assert_word(self.get_main_word(), "Сводная информация")
         
 
