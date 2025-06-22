@@ -9,8 +9,7 @@ from Pages.login_page import Login_page
 
 def test_Ecological_aspect():
     options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-    driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(options=options)
 
     print("Start test")
 
