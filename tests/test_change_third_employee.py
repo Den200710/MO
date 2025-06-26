@@ -6,7 +6,7 @@ import pytest
 
 from Base.base_test import BaseTest
 
-@allure.feature("Change mployee")
+@allure.feature("Change employee")
 class TestChangeThirdEmployee(BaseTest):
 
     @allure.title("Change lastname employee")
