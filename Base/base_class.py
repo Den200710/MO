@@ -1,13 +1,20 @@
 import allure
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
 class Base():
-
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 15, poll_frequency=1)
+
+
+    close_right_window = ("xpath", "//button[contains(@class,'rs-drawer-header-close')]")
+
+    def click_close_window(self):
+        with allure.step("Close rigth window"):
+            self.wait.until(EC.element_to_be_clickable(self.close_right_window)).click()
 
     def open(self):
         with allure.step(f"Open {self.PAGE_URL}page"):

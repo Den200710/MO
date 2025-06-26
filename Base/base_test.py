@@ -5,6 +5,8 @@ from Pages.left_sidebar import LeftSidebar
 from Pages.employees_page import EmployeesPage
 from Pages.edit_third_employee import EditThirdEmployeePage
 from Pages.third_employee import ThirdEmployeePage
+from Pages.examinations_page import ExaminationsPage
+from Pages.new_examination_page import NewExaminationPage
 
 class BaseTest:
 
@@ -13,6 +15,8 @@ class BaseTest:
     employees_page : EmployeesPage
     edit_third_employee : EditThirdEmployeePage
     third_employee : ThirdEmployeePage
+    examinations_page : ExaminationsPage
+    new_examination_page : NewExaminationPage
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
@@ -22,3 +26,5 @@ class BaseTest:
         request.cls.employees_page = EmployeesPage(driver)
         request.cls.edit_third_employee = EditThirdEmployeePage(driver)
         request.cls.third_employee = ThirdEmployeePage(driver)
+        request.cls.examinations_page = ExaminationsPage(driver)
+        request.cls.new_examination_page = NewExaminationPage(driver)

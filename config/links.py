@@ -10,3 +10,5 @@ class Links:
     NEW_EMPLOYEES_PAGE = f"{HOST}common/employees/new"
     THIRD_EMPLOYEES_PAGE = f"{HOST}common/employees/161/details"
     EDIT_THIRD_EMPLOYEES_PAGE = f"{HOST}common/employees/161/edit"
+    EXAMINATIONS_PAGE = f"{HOST}production-control/examinations"
+    NEW_EXAMINATION_PAGE = f"{HOST}production-control/examinations/new"

@@ -20,21 +20,10 @@ class LeftSidebar(Base):
     def click_employees_page(self):
         self.wait.until(EC.element_to_be_clickable(self.employees_page)).click()
 
-    def get_scroll_ecological_aspect(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.ecological_aspect)))
-    def get_scroll_examinations(self):
-        return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.examinations)))
+    @allure.step("Go to 'Examinations' page")
+    def click_examinations_page(self):
+        element = self.wait.until(EC.presence_of_element_located(self.examinations))
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        self.wait.until(EC.element_to_be_clickable(element)).click()
 
-    # Actions
-
-
-    # Methods
-
-    """Method scroll ecological aspect"""
-    def scroll_ecological_aspect(self):
-        ecological_aspect = self.get_scroll_ecological_aspect()
-        self.driver.execute_script("arguments[0].scrollIntoView(true);", ecological_aspect)
-    def scroll_examinations(self):
-        examinations = self.get_scroll_examinations()
-        self.driver.execute_script("arguments[0].scrollIntoView(true);", examinations)
 

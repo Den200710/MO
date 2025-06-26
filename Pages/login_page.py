@@ -28,8 +28,6 @@ class LoginPage(Base):
     def click_button(self):
         self.wait.until(EC.element_to_be_clickable(self.login_button)).click()
 
-    #def get_main_word(self):
-    #   return WebDriverWait(self.driver,30).until(EC.element_to_be_clickable((By.XPATH, self.main_word)))
     @allure.step("Select company")
     def click_select_company(self):
         self.wait.until(EC.element_to_be_clickable(self.select_company)).click()

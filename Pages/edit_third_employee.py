@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from Base.base_class import Base
 from config.links import Links
 from selenium.webdriver import Keys
+
 class EditThirdEmployeePage(Base):
 
     PAGE_URL = Links.EDIT_THIRD_EMPLOYEES_PAGE
