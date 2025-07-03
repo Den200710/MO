@@ -16,6 +16,9 @@ class Base():
         with allure.step("Close rigth window"):
             self.wait.until(EC.element_to_be_clickable(self.close_right_window)).click()
 
+    def switch_to_alert(self):
+        return self.driver.switch_to.alert
+
     def open(self):
         with allure.step(f"Open {self.PAGE_URL}page"):
             self.driver.get(self.PAGE_URL)
