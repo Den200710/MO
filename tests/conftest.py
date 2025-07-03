@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,6 +12,19 @@ def driver(request):            # для создания объекта дра�
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
+    options.add_argument("--disable-blink-features=AutomationControlled")  # Отключает детекцию автоматизации
+    options.add_argument("--disable-infobars")  # Убирает сообщение "Chrome is being controlled..."
+    # options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Скрывает "Automation controlled"
+    # options.add_experimental_option("useAutomationExtension", False)  # Отключает расширения автоматизации
+
+    preference = {
+        "download.default_directory": "C:\\Users\\User\\PycharmLessons\\MO\\Downloads",
+        "download.prompt_for_download": False,
+        "download.directory_upgrade": True,
+        "safebrowsing.enabled": False
+
+    }
+    options.add_experimental_option("prefs", preference)
     driver = webdriver.Chrome(options=options)
     request.cls.driver = driver
 
