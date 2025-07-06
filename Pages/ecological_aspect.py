@@ -7,12 +7,7 @@ from Base.base_class import Base
 from Pages.left_sidebar import LeftSidebar
 
 
-class Ecological_aspect_page(Base, LeftSidebar):
-
-
-    def __init__(self,driver):
-        super().__init__(driver)
-        self.driver = driver
+class Ecological_aspect_page(Base):
 
     # Variable
     var1_field = 'Авто экологический аспект'

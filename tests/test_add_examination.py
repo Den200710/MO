@@ -9,7 +9,7 @@ class TestAddNewExamination(BaseTest):
 
     @allure.title("Add new examination")
     @allure.severity("Critical")
-    @pytest.mark.smoke
+    #@pytest.mark.smoke
     def test_add_new_examination(self):
         self.login_page.open()
         self.login_page.enter_login("sample@sample.com")

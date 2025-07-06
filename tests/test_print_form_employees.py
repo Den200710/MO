@@ -23,14 +23,12 @@ class TestPrintFormEmployees(BaseTest):
         self.left_sidebar.is_opened()
         self.left_sidebar.click_employees_page()
         self.employees_page.is_opened()
+        self.employees_page.get_fio_first_employee()
         self.employees_page.click_button_print_form()
         self.employees_page.click_button_select_exel()
         self.employees_page.click_button_download()
-
-        employees_page = EmployeesPage(driver)
-        employees_page.check_employees_file()
-        employees_page.check_employees_file()
-        employees_page.delete_employees_file()
+        self.employees_page.check_employees_file()
+        self.employees_page.delete_employees_file()
 
 
 

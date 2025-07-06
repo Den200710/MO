@@ -1,11 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-from Pages.login_page import Login_page
+from Pages.login_page import LoginPage
 
 
 
-# def test_authorization_login():
+def test_authorization_login():
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(options=options)
 

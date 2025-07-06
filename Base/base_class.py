@@ -1,5 +1,6 @@
 import allure
-
+import time
+from pathlib import Path
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -77,6 +78,25 @@ class Base():
             print(f"Сохраненное значение для {variable_name}: {value}")  # Выводим значение
         except Exception as e:
             print(f"Произошла ошибка: {e}")  # Обработка ошибок
+
+    def wait_for_download_completion(self, file_path: Path, timeout=60):
+        start_time = time.time()
+        # Ждем появления файла
+        while not file_path.exists():
+            if time.time() - start_time > timeout:
+                raise TimeoutError("Файл не появился за отведенное время")
+            time.sleep(1)
+
+        # Ждем окончания скачивания (фиксируем размер)
+        previous_size = -1
+        while True:
+            current_size = file_path.stat().st_size
+            if current_size == previous_size:
+                break  # Размер не меняется — скачивание завершено
+            previous_size = current_size
+            if time.time() - start_time > timeout:
+                raise TimeoutError("Скачивание заняло слишком много времени")
+            time.sleep(1)
 
 
 

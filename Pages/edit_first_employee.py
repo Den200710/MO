@@ -4,7 +4,7 @@ from Base.base_class import Base
 from config.links import Links
 from selenium.webdriver import Keys
 
-class EditThirdEmployeePage(Base):
+class EditFirstEmployeePage(Base):
 
     PAGE_URL = Links.EDIT_THIRD_EMPLOYEES_PAGE
 
