@@ -12,7 +12,7 @@ class TestChangeThirdEmployee(BaseTest):
     @allure.title("Change lastname employee")
     @allure.severity("Critical")
     @pytest.mark.smoke
-    def test_change_lastname_third_employee(self):
+    def test_change_lastname_first_employee(self):
         self.login_page.open()
         self.login_page.enter_login("sample@sample.com")
         self.login_page.enter_password("123654")

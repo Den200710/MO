@@ -6,7 +6,7 @@ import pytest
 from Pages.employees_page import EmployeesPage
 from Base.base_test import BaseTest
 
-@allure.feature("Change employee")
+@allure.feature("Check save print employees file")
 class TestPrintFormEmployees(BaseTest):
 
     @allure.title("Check print form exel employees")
@@ -23,7 +23,5 @@ class TestPrintFormEmployees(BaseTest):
         self.employees_page.is_opened()
         self.employees_page.click_button_print_form()
         self.employees_page.click_button_select_exel()
-
         self.employees_page.click_button_download()
-        employees_page = EmployeesPage(driver)
-        employees_page.delete_employees_file()
+        self.employees_page.delete_employees_file()
