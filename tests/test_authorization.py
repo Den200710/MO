@@ -1,17 +1,24 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-from Pages.login_page import LoginPage
+import os
+import time
 
+import allure
+import pytest
+from Pages.employees_page import EmployeesPage
+from Base.base_test import BaseTest
 
+@allure.feature("Check save print employees file")
+class TestPrintFormEmployees(BaseTest):
 
-def test_authorization_login():
-    options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(options=options)
+    @allure.title("Check print form exel employees")
+    @allure.severity("Minor")
+    @pytest.mark.auth
+    def test_print_form_exel_employees(self, driver):
+        self.login_page.open()
+        self.login_page.enter_login()
+        self.login_page.enter_password()
+        self.login_page.click_button()
+        self.login_page.click_select_company()
+        self.left_sidebar.is_opened()
 
-    print("Start test")
-
-    login = Login_page(driver)
-    login.authorization()
 
 

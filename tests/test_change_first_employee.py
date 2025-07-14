@@ -14,8 +14,8 @@ class TestChangeThirdEmployee(BaseTest):
     @pytest.mark.smoke
     def test_change_lastname_first_employee(self):
         self.login_page.open()
-        self.login_page.enter_login("sample@sample.com")
-        self.login_page.enter_password("123654")
+        self.login_page.enter_login()
+        self.login_page.enter_password()
         self.login_page.click_button()
         self.login_page.click_select_company()
         self.left_sidebar.is_opened()
