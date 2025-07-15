@@ -22,8 +22,8 @@ class LeftSidebar(Base):
 
     @allure.step("Go to 'Examinations' page")
     def click_examinations_page(self):
-        element = self.wait.until(EC.presence_of_element_located(self.examinations))
+        element = self.wait.until(EC.element_to_be_clickable(self.examinations))
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
-        self.wait.until(EC.element_to_be_clickable(element)).click()
+        element.click()
 
 

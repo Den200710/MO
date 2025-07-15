@@ -16,8 +16,11 @@ class EmployeesPage(Base):
 
     select_first_employee = ("xpath", "(//div[contains(@class,'employee-fio-formatter_root')])[1]")
     button_print_form = ("xpath", "//button[@title='Печать списка']")
-    button_select_exel = ("xpath", "(//li[contains(@class, 'smartlist-print')])[2]")
-    button_download = ("xpath", "//a[contains(@href, 'download')]")
+    select_format_describe = ("xpath", "//span[@id='format-describe']")
+    button_select_exel = ("xpath", "//span[@class='rs-picker-select-menu-item']")
+    button_generate_report = ("xpath", "(//button[contains(@class,'rs-btn-green')])[2]")
+    button_download = ("xpath", "//a[contains(@href,'download')]")
+
 
     @allure.step("Click third employee")
     def click_first_employee(self):
@@ -26,9 +29,19 @@ class EmployeesPage(Base):
     @allure.step("Click print form employees")
     def click_button_print_form(self):
         self.wait.until(EC.element_to_be_clickable(self.button_print_form)).click()
+    @allure.step("Click select_format_describe")
+    def click_select_format_describe(self):
+        self.wait.until(EC.element_to_be_clickable(self.select_format_describe)).click()
+
     @allure.step("Select exel print form employees")
     def click_button_select_exel(self):
         self.wait.until(EC.element_to_be_clickable(self.button_select_exel)).click()
+    @allure.step("Generate exel print form employees")
+    def click_button_generate_report(self):
+        element = self.wait.until(EC.element_to_be_clickable(self.button_generate_report))
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        element.click()
+
     @allure.step("Download exel print form employees")
     def click_button_download(self):
         self.wait.until(EC.element_to_be_clickable(self.button_download)).click()
