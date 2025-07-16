@@ -1,5 +1,5 @@
 import os
-
+from pathlib import Path
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -17,8 +17,11 @@ def driver(request):            # для создания объекта дра�
     # options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Скрывает "Automation controlled"
     # options.add_experimental_option("useAutomationExtension", False)  # Отключает расширения автоматизации
 
+    current_directory = os.getcwd()
+    parent_directory = os.path.dirname(current_directory)
+    download_directory = os.path.join(parent_directory, 'Downloads')
     preference = {
-        "download.default_directory": "C:\\Users\\User\\PycharmLessons\\MO\\Downloads",
+        "download.default_directory": download_directory,
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
         "safebrowsing.enabled": False

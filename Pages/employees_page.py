@@ -9,7 +9,9 @@ from config.links import Links
 
 class EmployeesPage(Base):
 
-    path = "C:\\Users\\User\\PycharmLessons\\MO\\Downloads\\Список сотрудников.xlsx"
+    parent_directory = Path(os.path.dirname(os.getcwd()))
+    download_dir = parent_directory / 'Downloads'
+    path = download_dir / "Список сотрудников.xlsx"
     inactiv_employee = "Абдрафиков Чингиз Данирович"
 
     PAGE_URL = Links.EMPLOYEES_PAGE
@@ -45,12 +47,11 @@ class EmployeesPage(Base):
     @allure.step("Download exel print form employees")
     def click_button_download(self):
         self.wait.until(EC.element_to_be_clickable(self.button_download)).click()
-        download_dir = Path("C:/Users/User/PycharmLessons/MO/Downloads")
         temp_filename = "Список сотрудников.xlsx.crdownload"
         final_filename = "Список сотрудников.xlsx"
 
-        temp_file_path = download_dir / temp_filename
-        final_file_path = download_dir / final_filename
+        temp_file_path = self.download_dir / temp_filename
+        final_file_path = self.download_dir / final_filename
         # Вызов метода из базового класса
         self.wait_for_download_completion(temp_file_path)
         # Переименование файла после завершения скачивания
